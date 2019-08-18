@@ -12,11 +12,11 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final List<String> gambar = [
-    "satu.png",
-    "dua.png",
-    "tiga.png",
-    "empat.png",
-    "lima.png"
+    "1.jpg",
+    "2.jpg",
+    "3.jpg",
+    "4.jpg",
+    "5.jpg",
   ];
 
   @override
@@ -37,30 +37,49 @@ class _HomeState extends State<Home> {
           controller: new PageController(viewportFraction: 0.8),
           itemCount: gambar.length,
           itemBuilder: (BuildContext context, int i) {
-            return Padding(
+            return new Padding(
               padding:
                   new EdgeInsets.symmetric(horizontal: 8.0, vertical: 22.0),
-              child: new Material(
-                borderRadius: new BorderRadius.circular(15.0),
-                elevation: 5.0,
-                child: new Stack(
-                  fit: StackFit.expand,
-                  children: <Widget>[
-                    new Hero(
-                      tag: gambar[i],
-                      child: new Material(
-                          child: new InkWell(
-                              onTap: () => Navigator.of(context)
-                                      .push(new MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        new Halamandua(
-                                      gambar: gambar[i],
-                                    ),
-                                  )),
-                              child: new Image.asset("img/${gambar[i]}",
-                                  fit: BoxFit.cover))),
-                    ),
+              child: new Container(
+                decoration: new BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black,
+                      blurRadius:
+                          20.0, // has the effect of softening the shadow
+                      spreadRadius:
+                          5.0, // has the effect of extending the shadow
+                      offset: Offset(
+                        10.0, // horizontal, move right 10
+                        10.0, // vertical, move down 10
+                      ),
+                    )
                   ],
+                ),
+                child: new ClipRRect(
+                  borderRadius: new BorderRadius.circular(15.0),
+                  child: new Stack(
+                    fit: StackFit.expand,
+                    children: <Widget>[
+                      new Hero(
+                        tag: gambar[i],
+                        child: new Material(
+                          child: new InkWell(
+                            onTap: () => Navigator.of(context)
+                                .push(new MaterialPageRoute(
+                              builder: (BuildContext context) => new Halamandua(
+                                gambar: gambar[i],
+                              ),
+                            )),
+                            child: new Image.asset(
+                              "img/${gambar[i]}",
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             );
@@ -73,7 +92,6 @@ class _HomeState extends State<Home> {
 
 class Halamandua extends StatefulWidget {
   Halamandua({this.gambar});
-
   final String gambar;
 
   @override
@@ -85,9 +103,9 @@ class _HalamanduaState extends State<Halamandua> {
   Color warna = Colors.grey;
 
   void _pilihannya(Pilihan pilihan){
-    setState(){
+    setState(() {
       warna = pilihan.warna;
-    }
+    });
   }
 
   @override
@@ -99,8 +117,8 @@ class _HalamanduaState extends State<Halamandua> {
         actions: <Widget>[
           new PopupMenuButton<Pilihan>(
             onSelected: _pilihannya,
-            itemBuilder: (BuildContext context) {
-              return listPilihan.map((Pilihan x) {
+            itemBuilder: (BuildContext context){
+              return listPilihan.map((Pilihan x){
                 return new PopupMenuItem<Pilihan>(
                   child: new Text(x.teks),
                   value: x,
@@ -123,17 +141,14 @@ class _HalamanduaState extends State<Halamandua> {
           new Center(
             child: new Hero(
               tag: widget.gambar,
-              child: new ClipOval(
+              child: ClipOval(
                 child: new SizedBox(
                   width: 200.0,
                   height: 200.0,
                   child: new Material(
                     child: new InkWell(
-                      onTap: () => Navigator.of(context).pop,
-                      child: new Image.asset(
-                        "img/${widget.gambar}",
-                        fit: BoxFit.cover,
-                      ),
+                      onTap: () => Navigator.of(context).pop(),
+                      child: new Image.asset("img/${widget.gambar}", fit: BoxFit.cover),
                     ),
                   ),
                 ),
@@ -146,9 +161,8 @@ class _HalamanduaState extends State<Halamandua> {
   }
 }
 
-class Pilihan {
+class Pilihan{
   const Pilihan({this.teks, this.warna});
-
   final String teks;
   final Color warna;
 }

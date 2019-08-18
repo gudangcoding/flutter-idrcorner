@@ -69,6 +69,7 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.teal,
       ),
       body: new ListView(
+        padding: new EdgeInsets.all(10.0),
         children: <Widget>[
           new Container(
             child: new Column(

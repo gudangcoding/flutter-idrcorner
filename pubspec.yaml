@@ -59,6 +59,11 @@ flutter:
     - img/delapan.png
     - img/sembilan.png
     - img/sepuluh.png
+    - img/1.jpg
+    - img/2.jpg
+    - img/3.jpg
+    - img/4.jpg
+    - img/5.jpg
 
   # To add assets to your application, add an assets section, like this:
   # assets:

@@ -208,12 +208,12 @@ class Iconteks extends StatelessWidget {
       child: new Column(
         children: <Widget>[
           new Icon(
-            Icons.call,
+            icon,
             size: 50.0,
             color: Colors.blue,
           ),
           new Text(
-            "Call",
+            teks,
             style: new TextStyle(fontSize: 10.0, color: Colors.blue),
           )
         ],

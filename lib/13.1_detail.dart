@@ -4,6 +4,7 @@ class Detail extends StatelessWidget {
   Detail({this.nama, this.gambar});
   final String nama;
   final String gambar;
+  
   @override
   Widget build(BuildContext context) {
     return new Scaffold(

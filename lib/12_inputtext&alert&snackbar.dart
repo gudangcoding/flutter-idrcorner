@@ -19,20 +19,23 @@ class _HomeState extends State<Home> {
   TextEditingController controllerAlert = new TextEditingController();
   TextEditingController controllerSnackbar = new TextEditingController();
 
-  final GlobalKey<ScaffoldState> _scaffoldState = new GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _scaffoldState =
+      new GlobalKey<ScaffoldState>();
 
-  void _snackbar(String str){
-    if(str.isEmpty) return;
+  void _snackbar(String str) {
+    if (str.isEmpty) return;
 
     _scaffoldState.currentState.showSnackBar(new SnackBar(
-      content: new Text(str, style: new TextStyle(fontSize: 20.0),),
+      content: new Text(
+        str,
+        style: new TextStyle(fontSize: 20.0),
+      ),
       duration: new Duration(seconds: 3),
     ));
   }
 
   void _alertdialog(String str) {
     if (str.isEmpty) return;
-
     AlertDialog alertDialog = new AlertDialog(
       content: new Text(
         str,
@@ -42,7 +45,7 @@ class _HomeState extends State<Home> {
         new RaisedButton(
           color: Colors.purple,
           child: new Text("OK"),
-          onPressed: (){
+          onPressed: () {
             Navigator.pop(context);
           },
         )
@@ -69,40 +72,32 @@ class _HomeState extends State<Home> {
                 hintText: "Tulis di sini",
               ),
               // onChanged: (String str){
-              //   setState(){
-              //     teks = str;
-              //   }
-              // },
               onSubmitted: (String str) {
-                setState() {
+                setState(() {
                   teks = str + '\n' + teks;
                   controllerInput.text = "";
-                }
+                });
               },
             ),
-            new Text(
-              teks,
-              style: new TextStyle(fontSize: 20.0),
-            ),
+            new Text(teks, style: new TextStyle(fontSize: 20.0)),
             new TextField(
               controller: controllerAlert,
               decoration: new InputDecoration(
-                hintText: "Tulis untuk Alert...",
+                hintText: "Tulis untuk Alert",
               ),
               onSubmitted: (String str) {
                 _alertdialog(str);
                 controllerAlert.text = "";
               },
             ),
-
             new TextField(
               controller: controllerSnackbar,
               decoration: new InputDecoration(
-                hintText: "Tulis untuk Alert...",
+                hintText: "Tulis untuk Snackbar",
               ),
               onSubmitted: (String str) {
                 _snackbar(str);
-                controllerAlert.text = "";
+                controllerSnackbar.text = "";
               },
             ),
           ],
